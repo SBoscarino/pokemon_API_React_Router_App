@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+nav {
+  background-color: #a4ba70;
+  padding: 25px 0;
+}
+
+.nav-link {
+  color: #2d4f1c;
+  text-decoration: none;
+  border: 1px solid #2d4f1c;
+  font-size: 30px;
+  padding: 5px;
+  margin: 10px;
+  box-shadow: 1px 1px 1px green;
+}
+
+.selected {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  box-shadow: 1px 2px 2px #000000;
+}
