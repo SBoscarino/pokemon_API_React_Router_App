@@ -47,7 +47,7 @@ render(){
   let oneBerryInfo;
   if (this.state.oneBerry.flavors.length > 0) {
     oneBerryInfo = <div>
-      {this.state.berry.map((berry, i) => {
+      {this.state.data.map((berry, i) => {
       return <div>
           <p>Growth Time:</p>
           <div>{berry.growth_time}</div>
