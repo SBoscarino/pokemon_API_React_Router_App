@@ -1,0 +1,27 @@
+.home-section {
+  font-family: 'Raleway', sans-serif;
+  background-color: #dad8a8;
+}
+h1, h2, h3{
+  margin: 0;
+  background-color: #f8f4ca;
+  width:100%;
+  text-align: center;
+}
+
+.home-flex {
+  display:flex;
+  flex-wrap: wrap;
+  padding-top:100px;
+  padding-bottom: 50px;
+}
+div {
+  flex-basis: 33.3333%;
+}
+.ooocolors{
+  background-color: #f8f4ca;
+  height:50px;
+}
+img {
+  height: 300px;
+}

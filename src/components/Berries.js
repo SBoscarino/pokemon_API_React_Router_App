@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles/berries.css';
 
 class Berries extends Component {
 constructor(){
@@ -21,7 +22,7 @@ componentDidMount(){
 //     return num;
 //   }
 //   console.log('num',num);
-  fetch('http://pokeapi.co/api/v2/berry/?limit=1&offset=' + 6)
+  fetch('http://pokeapi.co/api/v2/berry/?limit=10&offset=' + 6)
     .then(results => {
       return results.json();
     }).then(data => {
@@ -44,22 +45,22 @@ getBerryDetail(berry){
 
 
 render(){
+  console.log("IN RENDER: oneBerry", this.state.oneBerry)
+  console.log("IN RENDER: data", this.state.data)
   let oneBerryInfo;
   if (this.state.oneBerry.flavors.length > 0) {
-    oneBerryInfo = <div>
-      {this.state.data.map((berry, i) => {
-      return <div>
-          <p>Growth Time:</p>
-          <div>{berry.growth_time}</div>
-          <p>Maximum Harvest Amount:</p>
-          <div>{berry.max_harvest}</div>
-          <p>Berry Smoothness:</p>
-          <div>{berry.smoothness}</div>
-          <p>Berry Size:</p>
-          <div>{berry.size}</div>
-        </div>
-    })}
-  </div>
+    oneBerryInfo = <div className="popupinfo">
+    <h2>Here's info on the berry you chose:</h2>
+    <div>
+          <p> <b>{this.state.oneBerry.name} berry</b></p>
+          <p>Growth Time: {this.state.oneBerry.growth_time}</p>
+          <p>Maximum Harvest Amount: {this.state.oneBerry.max_harvest}</p>
+          <p>Berry Smoothness: {this.state.oneBerry.smoothness}</p>
+          <p>Berry Size: {this.state.oneBerry.size}</p>
+          <p>Berry Natural Gift Move Power: {this.state.oneBerry.natural_gift_power}</p>
+            <p>Firmness Level:  {this.state.oneBerry.firmness.name}</p>
+      </div>
+      </div>
   } else {
     oneBerryInfo = <p>Click a berry to have a look!</p>
   }
@@ -71,7 +72,9 @@ render(){
   return(
     <div className="berries-section">
       <h1>Berries</h1>
-        <div>
+      <div className="berriesflex">
+        <div className="listofberries">
+        <h2>Click a berry to learn more!</h2>
          {this.state.data.map((berry, i) => {
           return (
             <li key={i} onClick={() => this.getBerryDetail(berry)}>{berry.name}</li>
@@ -79,6 +82,7 @@ render(){
         })}
         </div>
       {oneBerryInfo}
+      </div>
     </div>
   )
 }

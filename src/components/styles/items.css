@@ -1,0 +1,34 @@
+.berries-section {
+  font-family: 'Raleway', sans-serif;
+  background-color: #c86b98;
+  font-size: 20px;
+}
+h1, h2{
+  margin: 0;
+  background-color: white;
+  width:100%;
+  text-align: center;
+}
+.berriesflex{
+  padding-top: 50px;
+  display:flex;
+  flex-flow: row wrap;
+}
+.listofberries, .popupinfo{
+  background-color: #e6a8c6;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  list-style: none;
+  flex-basis: 40%;
+}
+.listofberries li{
+  margin: 0;
+  padding:2px;
+  padding-left: 5px;
+}
+.popupinfo p{
+  margin: 0;
+  padding:2px;
+  padding-left: 5px;
+}
