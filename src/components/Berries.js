@@ -21,7 +21,7 @@ componentDidMount(){
 //     return num;
 //   }
 //   console.log('num',num);
-  fetch('http://pokeapi.co/api/v2/berry/?limit=2&offset=' + 6)
+  fetch('http://pokeapi.co/api/v2/berry/?limit=1&offset=' + 6)
     .then(results => {
       return results.json();
     }).then(data => {
@@ -43,14 +43,26 @@ getBerryDetail(berry){
 }
 
 
-
 render(){
-
-  let berryList;
-    if (this.state.oneBerry.flavors.length <= 0) {
-    berryList = <p>Click a berry to have a look!</p>
-  };
-
+  let oneBerryInfo;
+  if (this.state.oneBerry.flavors.length > 0) {
+    oneBerryInfo = <div>
+      {this.state.berry.map((berry, i) => {
+      return <div>
+          <p>Growth Time:</p>
+          <div>{berry.growth_time}</div>
+          <p>Maximum Harvest Amount:</p>
+          <div>{berry.max_harvest}</div>
+          <p>Berry Smoothness:</p>
+          <div>{berry.smoothness}</div>
+          <p>Berry Size:</p>
+          <div>{berry.size}</div>
+        </div>
+    })}
+  </div>
+  } else {
+    oneBerryInfo = <p>Click a berry to have a look!</p>
+  }
 
   console.log('state in render',this.state.oneBerry);
   const berry = this.state.oneBerry;
@@ -59,33 +71,15 @@ render(){
   return(
     <div className="berries-section">
       <h1>Berries</h1>
-      <div>
-      {this.state.data.map((berry, i) => {
-        return (
-          <li key={i} onClick={() => this.getBerryDetail(berry)}>{berry.name}</li>
-        )
-      })}
+        <div>
+         {this.state.data.map((berry, i) => {
+          return (
+            <li key={i} onClick={() => this.getBerryDetail(berry)}>{berry.name}</li>
+          )
+        })}
+        </div>
+      {oneBerryInfo}
     </div>
-    <div>
-      <p>Growth Time:</p>
-      <div>{berry.growth_time}</div>
-      <p>Maximum Harvest Amount:</p>
-      <div>{berry.max_harvest}</div>
-      <p>Berry Smoothness:</p>
-      <div>{berry.smoothness}</div>
-      <p>Berry Size:</p>
-      <div>{berry.size}</div>
-      <p>Possible Flavors:</p>
-      {berry.flavors.map((flavor, i) => {
-        return(
-          <div key={i}>
-            <div>{flavor.flavor.name}</div>
-          </div>
-        )
-      })}
-    </div>
-    {berryList}
-  </div>
   )
 }
 }
