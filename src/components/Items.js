@@ -7,62 +7,61 @@ constructor(){
 
   this.state = {
     data: [],
-    oneBerry: {flavors: []},
-    id: '',
-    growth_time: '',
-    max_harvest: '',
-    flavor: ''
+    oneItem: [],
+    name: '',
+    cost: '',
+    fling_power: '',
+    category: '',
+    short_effect: '',
+    flavor_text: '',
+    sprite: ''
+
+
   }
 }
 
-componentDidMount(){
-  //get two berries at random.
-// function getRandomNumber() {
-//   num = Math.floor(Math.random() * (60 - 0 + 1)) + 0;
-//     return num;
-//   }
-//   console.log('num',num);
-  fetch('http://pokeapi.co/api/v2/berry/?limit=10&offset=' + 6)
+  fetch('http://pokeapi.co/api/v2/item/?limit=2&offset=' + 6)
     .then(results => {
       return results.json();
     }).then(data => {
-      // console.log('data array in mount',data);
       this.setState({data: data.results});
     })
 }
 
 
-getBerryDetail(berry){
-  console.log('clicking some berries',berry);
-  fetch('http://pokeapi.co/api/v2/berry/' + berry.name)
+getItemDetail(item){
+  console.log('clicking some items',item);
+  fetch('http://pokeapi.co/api/v2/item/' + item.name)
   .then(results => {
     return results.json();
-  }).then(berry => {
-    console.log('data in getberrydetail', berry);
-    this.setState({oneBerry: berry});
+  }).then(item => {
+    console.log('data in getItemDetail', item);
+    this.setState({oneItem: item});
   })
 }
 
 
 render(){
-  console.log("IN RENDER: oneBerry", this.state.oneBerry)
+  console.log("IN RENDER: oneItem", this.state.oneItem)
   console.log("IN RENDER: data", this.state.data)
-  let oneBerryInfo;
-  if (this.state.oneBerry.flavors.length > 0) {
-    oneBerryInfo = <div className="popupinfo">
-    <h2>Here's info on the berry you chose:</h2>
+  let oneItemInfo;
+  if (this.state.oneItem.effect_entries.length > 0) {
+    oneItemInfo = <div className="popupinfo">
+    <h2>Here's info on the item you chose:</h2>
     <div>
-          <p> <b>{this.state.oneBerry.name} berry</b></p>
-          <p>Growth Time: {this.state.oneBerry.growth_time}</p>
-          <p>Maximum Harvest Amount: {this.state.oneBerry.max_harvest}</p>
-          <p>Berry Smoothness: {this.state.oneBerry.smoothness}</p>
-          <p>Berry Size: {this.state.oneBerry.size}</p>
-          <p>Berry Natural Gift Move Power: {this.state.oneBerry.natural_gift_power}</p>
-            <p>Firmness Level:  {this.state.oneBerry.firmness.name}</p>
+          <p> <b>{this.state.oneItem.name}</b></p>
+          <p>Cost: {this.state.oneItem.cost}</p>
+          <p>Pomemon Move "Fling" Power: {this.state.oneItem.fling_power}</p>
+          <p>Item Category: {this.state.oneItem.category.name}</p>
+          <p>Item Effect: {this.state.oneItem.effect_entries.short_effect}</p>
+          <p>Flavor Text{this.state.oneItem.flavor_text_entries.text}</p>
+            <div>
+              <img src={this.state.oneItem.sprites.default}/>
+            </div>
       </div>
       </div>
   } else {
-    oneBerryInfo = <p>Click a berry to have a look!</p>
+    oneItemInfo = <p>Click on an item to have a closer look!</p>
   }
 
   console.log('state in render',this.state.oneBerry);
