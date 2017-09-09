@@ -15,19 +15,16 @@ constructor(){
     short_effect: '',
     flavor_text: '',
     sprite: ''
-
-
   }
 }
-
-  fetch('http://pokeapi.co/api/v2/item/?limit=2&offset=' + 6)
-    .then(results => {
-      return results.json();
-    }).then(data => {
-      this.setState({data: data.results});
+  componentDidMount(){
+    fetch('http://pokeapi.co/api/v2/item/?limit=2&offset=' + 6)
+      .then(results => {
+        return results.json();
+      }).then(data => {
+        this.setState({data: data.results});
     })
-}
-
+  }
 
 getItemDetail(item){
   console.log('clicking some items',item);
@@ -45,9 +42,9 @@ render(){
   console.log("IN RENDER: oneItem", this.state.oneItem)
   console.log("IN RENDER: data", this.state.data)
   let oneItemInfo;
-  if (this.state.oneItem.effect_entries.length > 0) {
+  if (this.state.oneItem.length > 0) {
     oneItemInfo = <div className="popupinfo">
-    <h2>Here's info on the item you chose:</h2>
+    <h2>Here be the info on the item you chose:</h2>
     <div>
           <p> <b>{this.state.oneItem.name}</b></p>
           <p>Cost: {this.state.oneItem.cost}</p>
@@ -64,23 +61,23 @@ render(){
     oneItemInfo = <p>Click on an item to have a closer look!</p>
   }
 
-  console.log('state in render',this.state.oneBerry);
-  const berry = this.state.oneBerry;
-  console.log('berry', berry);
-  console.log('length',berry.length);
+  console.log('state in render',this.state.oneItem);
+  const item = this.state.oneItem;
+  // console.log('item', item);
+  // console.log('length',item.length);
   return(
-    <div className="berries-section">
-      <h1>Berries</h1>
-      <div className="berriesflex">
-        <div className="listofberries">
-        <h2>Click a berry to learn more!</h2>
-         {this.state.data.map((berry, i) => {
+    <div className="items-section">
+      <h1>Items</h1>
+      <div className="itemsflex">
+        <div className="listofitems">
+        <h2>Click an item to learn more!</h2>
+         {this.state.data.map((item, i) => {
           return (
-            <li key={i} onClick={() => this.getBerryDetail(berry)}>{berry.name}</li>
+            <li key={i} onClick={() => this.getItemDetail(item)}>{item.name}</li>
           )
         })}
         </div>
-      {oneBerryInfo}
+
       </div>
     </div>
   )
