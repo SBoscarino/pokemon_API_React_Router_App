@@ -24,14 +24,20 @@ componentDidMount(){
 
 
 render(){
+  let PokeLoader;
+  window.onload()
+  if (this.state.pokemonData.length === 0) {
+    PokeLoader = <div className="LoaderPokeball"><img src='https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'></img></div>
+  }
   console.log('state in render',this.state);
   return(
     <div className="pokemon-section">
-      <h1>Berries</h1>
+      <h1>Pokemon</h1>
       <div>
+      {PokeLoader}
       {this.state.pokemonData.map((pokemon, i) => {
         return (
-          <li key={i}>{pokemon.name}</li>
+          <div key={i}>{pokemon.name}</div>
         )
       })}
       </div>
