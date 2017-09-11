@@ -48,9 +48,12 @@ render(){
   console.log("IN RENDER: oneBerry", this.state.oneBerry)
   console.log("IN RENDER: data", this.state.data)
   let oneBerryInfo;
-  if (this.state.oneBerry.flavors.length > 0) {
+    if (this.state.oneBerry.flavors.length === 0) {
+        oneBerryInfo = <div><img className="PokeLoader" src='https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'></img></div>
+    }
+  else if (this.state.oneBerry.flavors.length > 0) {
     oneBerryInfo = <div className="popupinfo">
-    <h2>Here's info on the berry you chose:</h2>
+    <h2>Here is info on the berry you chose:</h2>
     <div>
           <p> <b>{this.state.oneBerry.name} berry</b></p>
           <p>Growth Time: {this.state.oneBerry.growth_time}</p>
