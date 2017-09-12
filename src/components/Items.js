@@ -18,7 +18,7 @@ constructor(){
   }
 }
   componentDidMount(){
-    fetch('http://pokeapi.co/api/v2/item/?limit=2&offset=' + 6)
+    fetch('http://pokeapi.co/api/v2/item/?limit=10&offset=' + 11)
       .then(results => {
         return results.json();
       }).then(data => {
@@ -50,8 +50,8 @@ render(){
           <p>Cost: {this.state.oneItem.cost}</p>
           <p>Pomemon Move "Fling" Power: {this.state.oneItem.fling_power}</p>
           <p>Item Category: {this.state.oneItem.category.name}</p>
-          <p>Item Effect: {this.state.oneItem.effect_entries.short_effect}</p>
-          <p>Flavor Text : {this.state.oneItem.flavor_text_entries.text}</p>
+          <p>Item Effect: {this.state.oneItem.effect_entries[0].short_effect}</p>
+          <p>Flavor Text : {this.state.oneItem.flavor_text_entries[1].text}</p>
             <div>
               <img src={this.state.oneItem.sprites.default}/>
             </div>
