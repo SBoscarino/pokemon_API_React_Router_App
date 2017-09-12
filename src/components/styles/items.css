@@ -1,6 +1,6 @@
 .items-section {
   font-family: 'Raleway', sans-serif;
-  background-color: #c86b98;
+  background-color: #fe9c7f;
   font-size: 20px;
 }
 h1, h2{
@@ -15,7 +15,7 @@ h1, h2{
   flex-flow: row wrap;
 }
 .listofitems, .popupinfo{
-  background-color: #e6a8c6;
+  background-color: #fadcd4;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 5%;

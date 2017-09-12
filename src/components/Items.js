@@ -7,7 +7,7 @@ constructor(){
 
   this.state = {
     data: [],
-    oneItem: [],
+    oneItem: {attributes : []},
     name: '',
     cost: '',
     fling_power: '',
@@ -42,7 +42,7 @@ render(){
   console.log("IN RENDER: oneItem", this.state.oneItem)
   console.log("IN RENDER: data", this.state.data)
   let oneItemInfo;
-  if (this.state.oneItem.length > 0) {
+  if (this.state.oneItem.attributes.length > 0) {
     oneItemInfo = <div className="popupinfo">
     <h2>Here be the info on the item you chose:</h2>
     <div>
@@ -51,11 +51,11 @@ render(){
           <p>Pomemon Move "Fling" Power: {this.state.oneItem.fling_power}</p>
           <p>Item Category: {this.state.oneItem.category.name}</p>
           <p>Item Effect: {this.state.oneItem.effect_entries.short_effect}</p>
-          <p>Flavor Text{this.state.oneItem.flavor_text_entries.text}</p>
+          <p>Flavor Text : {this.state.oneItem.flavor_text_entries.text}</p>
             <div>
               <img src={this.state.oneItem.sprites.default}/>
             </div>
-      </div>
+          </div>
       </div>
   } else {
     oneItemInfo = <p>Click on an item to have a closer look!</p>
@@ -63,8 +63,8 @@ render(){
 
   console.log('state in render',this.state.oneItem);
   const item = this.state.oneItem;
-  // console.log('item', item);
-  // console.log('length',item.length);
+  console.log('item', item);
+  console.log('length',item.length);
   return(
     <div className="items-section">
       <h1>Items</h1>
@@ -77,7 +77,7 @@ render(){
           )
         })}
         </div>
-
+        {oneItemInfo}
       </div>
     </div>
   )
