@@ -10,12 +10,6 @@ import Berries from './components/Berries.js';
 import Items from './components/Items.js';
 import Pokemon from './components/Pokemon.js';
 import NavBar from './components/Nav.js';
-//
-// <NavLink
-//   activeStyle={{
-//     color: "blue",
-//     backgroundColor: "white"
-//   }}>Main Page</NavLink>
 
 ReactDOM.render(
   <BrowserRouter>

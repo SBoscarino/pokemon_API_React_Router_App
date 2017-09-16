@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-// <NavLink
-//   activeStyle={{
-//     color: "blue",
-//     backgroundColor: "white"
-//   }}>Main Page</NavLink>
 
 class NavBar extends Component {
   render(){
