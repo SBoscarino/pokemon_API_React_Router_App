@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles/pokemon.css';
 
 class Pokemon extends Component {
 constructor(){
@@ -6,42 +7,55 @@ constructor(){
 
   this.state = {
     pokemonData: [],
+    value: 'bulbasaur'
   }
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 }
+
+handleChange(event) {
+  this.setState({value: event.target.value});
+}
+
+handleSubmit(event) {
+  fetch('http://pokeapi.co/api/v2/pokemon/' + this.state.value)
+  .then(results => {
+    return results.json();
+  }).then(data => {
+    console.log('data in choose a pokemon textarea', data);
+    this.setState({pokemonData: data.results});
+ });
+   event.preventDefault();
+ }
 
 componentDidMount(){
-  fetch('http://pokeapi.co/api/v2/pokemon/?limit=1&offset=2')
-    .then(results => {
-      return results.json();
-    }).then(data => {
-      console.log('data array in mount',data);
-      this.setState({pokemonData: data.results});
-    })
-}
-
-
-
-
-
-render(){
-  let PokeLoader;
-  if (this.state.pokemonData.length === 0) {
-    PokeLoader = <div className="LoaderPokeball"><img src='https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'></img></div>
-  }
   console.log('state in render',this.state);
-  return(
-    <div className="pokemon-section">
-      <h1>Pokemon</h1>
-      <div>
-      {PokeLoader}
-      {this.state.pokemonData.map((pokemon, i) => {
-        return (
-          <div key={i}>{pokemon.name}</div>
-        )
-      })}
-      </div>
-    </div>
-  )
+     fetch('http://pokeapi.co/api/v2/pokemon/' + this.state.value)
+     .then(results => {
+       return results.json();
+     }).then(data => {
+       console.log('data in choose a pokemon textarea', data);
+       this.setState({pokemonData: data.results});
+    });
 }
+
+
+
+  render(){
+    if (this.state.generation > 0 && this.state.type > 0) {
+      let PokemonEntryDiv =  <div>
+        <p>X</p>
+        <div className="sprite"></div>
+        <div className="PokemonInfo"></div>
+        </div>
+    }
+    return (
+        <form onSubmit={this.handleSubmit}>
+          <h1>Search for a Pokemon:</h1>
+          <textarea value={this.state.value} onChange={this.handleChange}></textarea>
+          <input type="submit" value="Submit" />
+        </form>
+    )
+  }
 }
 export default Pokemon;
