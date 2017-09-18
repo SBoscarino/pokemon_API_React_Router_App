@@ -32,3 +32,9 @@ h1, h2{
   padding:2px;
   padding-left: 5px;
 }
+
+.itemImage {
+  width:30%;
+  padding-left: 35%;
+  padding-right: 35%;
+}

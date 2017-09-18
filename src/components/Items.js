@@ -52,7 +52,7 @@ render(){
       <p>Item Effect: {this.state.oneItem.effect_entries[0].short_effect}</p>
       <p>Flavor Text : {this.state.oneItem.flavor_text_entries[1].text}</p>
       <div>
-        <img alt="item" src={this.state.oneItem.sprites.default}/>
+        <img alt="item" className="itemImage" src={this.state.oneItem.sprites.default}/>
       </div>
     </div>
   </div>
