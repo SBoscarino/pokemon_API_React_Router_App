@@ -52,10 +52,9 @@ render(){
         oneBerryInfo = <div><img className="PokeLoader" src='https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'></img></div>
     }
   else if (this.state.oneBerry.flavors.length > 0) {
-    oneBerryInfo = <div className="popupinfo">
-    <h2>Here is info on the berry you chose:</h2>
+    oneBerryInfo = <div className="popupinfoBerry">
+    <h2>Information on the {this.state.oneBerry.name} berry </h2>
     <div>
-          <p> <b>{this.state.oneBerry.name} berry</b></p>
           <p>Growth Time: {this.state.oneBerry.growth_time}</p>
           <p>Maximum Harvest Amount: {this.state.oneBerry.max_harvest}</p>
           <p>Berry Smoothness: {this.state.oneBerry.smoothness}</p>

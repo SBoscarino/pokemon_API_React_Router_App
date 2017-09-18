@@ -14,7 +14,7 @@ h1, h2{
   display:flex;
   flex-flow: row wrap;
 }
-.listofberries, .popupinfo{
+.listofberries, .popupinfoBerry{
   background-color: #e6a8c6;
   margin-left: 5%;
   margin-right: 5%;

@@ -6,7 +6,7 @@ constructor(){
   super();
 
   this.state = {
-    pokemonData: [],
+    pokemonData: {game_indices : []},
     value: '',
     name: '',
     weight: '',
@@ -25,41 +25,52 @@ handleChange(event) {
 }
 
 handleSubmit(event) {
-  console.log('Pokemon name submitted!!');
+  // console.log('Pokemon name submitted!!');
   fetch('http://pokeapi.co/api/v2/pokemon/' + this.state.value)
   .then(results => {
     return results.json();
   }).then(pokemon => {
-    console.log('data in handleSubmit:', pokemon);
-    this.setState({pokemonData: pokemon});
+    // console.log('data in handleSubmit:', pokemon);
+    this.setState({pokemonData: pokemon, value: ''})
  });
  event.preventDefault();
  }
 
   render(){
+    // console.log('yo', this.state.pokemonData)
+    // console.log('yo', this.state.pokemonData.name)
     let PokemonPopUp;
-    if (this.state.pokemonData.name) {
-      let PokemonPopUp = <div>
-          <div className="sprite">
-            <img src='{this.props.pokemonData.sprites[front_default]}'/>
-          </div>
-          <div className="info">
-          <h1>{this.state.pokemonData.name}</h1>
-          <p>Pokedex Number: {this.state.pokemonData.order}</p>
-          <p>Height: {this.state.pokemonData.height}</p>
-          <p>Weight: {this.state.pokemonData.weight}</p>
-          <p>Base Experience:{this.state.pokemonData.base_experience}</p>
+    if (this.state.pokemonData.game_indices.length === undefined) {
+      PokemonPopUp = <p>You have left the field empty or spelled the Pokemon name incorrectly. Please check and try again.</p>
+    }
+    else if (this.state.pokemonData.game_indices.length > 0) {
+      PokemonPopUp = (
+      <div className="pokemon-section">
+        <div className="popupinfoTwo">
+            <div className="sprite">
+            <h2>Sprites</h2>
+              <img alt="pokemon front" src={this.state.pokemonData.sprites.front_default}/>
+              <img alt="pokemon back" src={this.state.pokemonData.sprites.back_default}/>
+            </div>
+            <div className="pokemoninfo">
+            <h2>Info on {this.state.pokemonData.name}</h2>
+              <p>Pokedex Number: {this.state.pokemonData.order}</p>
+              <p>Height: {this.state.pokemonData.height}</p>
+              <p>Weight: {this.state.pokemonData.weight}</p>
+              <p>Base Experience:{this.state.pokemonData.base_experience}</p>
+            </div>
           </div>
         </div>
+      )
     } else {
       PokemonPopUp = <p>Search for a Pokemon to learn something new! Example: pikachu</p>
     }
   return (
-    <div>
+    <div className="pokemon-topper">
       <form onSubmit={this.handleSubmit}>
-        <h1>Search for a Pokemon:</h1>
+        <h1>Search for a Pokemon</h1>
         <input type="text" value={this.state.value} onChange={this.handleChange}/>
-        <input type="submit" value="Submit" />
+        <button type="submit" value="Submit">Submit</button>
       </form>
       {PokemonPopUp}
     </div>

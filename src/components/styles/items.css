@@ -10,12 +10,12 @@ h1, h2{
   text-align: center;
 }
 .itemsflex{
-  padding-top: 50px;
   display:flex;
   flex-flow: row wrap;
 }
 .listofitems, .popupinfo{
-  background-color: #fadcd4;
+  margin-top:50px;
+  background-color:#f0bbab;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 5%;
