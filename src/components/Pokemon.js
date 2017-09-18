@@ -1,47 +1,80 @@
 import React, { Component } from 'react';
+import './styles/pokemon.css';
 
 class Pokemon extends Component {
 constructor(){
   super();
 
   this.state = {
-    pokemonData: [],
+    pokemonData: {game_indices : []},
+    value: '',
+    name: '',
+    weight: '',
+    height: '',
+    order: '',
+    base_experience: '',
+    types: []
   }
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 }
 
-componentDidMount(){
-  fetch('http://pokeapi.co/api/v2/pokemon/?limit=1&offset=2')
-    .then(results => {
-      return results.json();
-    }).then(data => {
-      console.log('data array in mount',data);
-      this.setState({pokemonData: data.results});
-    })
+handleChange(event) {
+  // console.log('handleChange', event.target.value)
+  this.setState({value: event.target.value});
 }
 
+handleSubmit(event) {
+  // console.log('Pokemon name submitted!!');
+  fetch('http://pokeapi.co/api/v2/pokemon/' + this.state.value)
+  .then(results => {
+    return results.json();
+  }).then(pokemon => {
+    // console.log('data in handleSubmit:', pokemon);
+    this.setState({pokemonData: pokemon, value: ''})
+ });
+ event.preventDefault();
+ }
 
-
-
-
-render(){
-  let PokeLoader;
-  if (this.state.pokemonData.length === 0) {
-    PokeLoader = <div className="LoaderPokeball"><img src='https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'></img></div>
-  }
-  console.log('state in render',this.state);
-  return(
-    <div className="pokemon-section">
-      <h1>Pokemon</h1>
-      <div>
-      {PokeLoader}
-      {this.state.pokemonData.map((pokemon, i) => {
-        return (
-          <div key={i}>{pokemon.name}</div>
-        )
-      })}
-      </div>
+  render(){
+    // console.log('yo', this.state.pokemonData)
+    // console.log('yo', this.state.pokemonData.name)
+    let PokemonPopUp;
+    if (this.state.pokemonData.game_indices.length === undefined) {
+      PokemonPopUp = <p>You have left the field empty or spelled the Pokemon name incorrectly. Please check and try again.</p>
+    }
+    else if (this.state.pokemonData.game_indices.length > 0) {
+      PokemonPopUp = (
+      <div className="pokemon-section">
+        <div className="popupinfoTwo">
+            <div className="sprite">
+            <h2>Sprites</h2>
+              <img alt="pokemon front" src={this.state.pokemonData.sprites.front_default}/>
+              <img alt="pokemon back" src={this.state.pokemonData.sprites.back_default}/>
+            </div>
+            <div className="pokemoninfo">
+            <h2>Info on {this.state.pokemonData.name}</h2>
+              <p>Pokedex Number: {this.state.pokemonData.order}</p>
+              <p>Height: {this.state.pokemonData.height}</p>
+              <p>Weight: {this.state.pokemonData.weight}</p>
+              <p>Base Experience:{this.state.pokemonData.base_experience}</p>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      PokemonPopUp = <p>Search for a Pokemon to learn something new! Example: pikachu</p>
+    }
+  return (
+    <div className="pokemon-topper">
+      <form onSubmit={this.handleSubmit}>
+        <h1>Search for a Pokemon</h1>
+        <input type="text" value={this.state.value} onChange={this.handleChange}/>
+        <button type="submit" value="Submit">Submit</button>
+      </form>
+      {PokemonPopUp}
     </div>
-  )
-}
+    )
+  }
 }
 export default Pokemon;

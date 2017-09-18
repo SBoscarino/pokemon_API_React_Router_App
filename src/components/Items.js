@@ -39,24 +39,23 @@ getItemDetail(item){
 
 
 render(){
-  console.log("IN RENDER: oneItem", this.state.oneItem)
-  console.log("IN RENDER: data", this.state.data)
+  // console.log("IN RENDER: oneItem", this.state.oneItem)
+  // console.log("IN RENDER: data", this.state.data)
   let oneItemInfo;
   if (this.state.oneItem.attributes.length > 0) {
     oneItemInfo = <div className="popupinfo">
-    <h2>Here be the info on the item you chose:</h2>
+    <h2>Information on the {this.state.oneItem.name}</h2>
     <div>
-          <p> <b>{this.state.oneItem.name}</b></p>
-          <p>Cost: {this.state.oneItem.cost}</p>
-          <p>Pomemon Move "Fling" Power: {this.state.oneItem.fling_power}</p>
-          <p>Item Category: {this.state.oneItem.category.name}</p>
-          <p>Item Effect: {this.state.oneItem.effect_entries[0].short_effect}</p>
-          <p>Flavor Text : {this.state.oneItem.flavor_text_entries[1].text}</p>
-            <div>
-              <img src={this.state.oneItem.sprites.default}/>
-            </div>
-          </div>
+      <p>Cost: {this.state.oneItem.cost}</p>
+      <p>Pomemon Move "Fling" Power: {this.state.oneItem.fling_power}</p>
+      <p>Item Category: {this.state.oneItem.category.name}</p>
+      <p>Item Effect: {this.state.oneItem.effect_entries[0].short_effect}</p>
+      <p>Flavor Text : {this.state.oneItem.flavor_text_entries[1].text}</p>
+      <div>
+        <img alt="item" src={this.state.oneItem.sprites.default}/>
       </div>
+    </div>
+  </div>
   } else {
     oneItemInfo = <p>Click on an item to have a closer look!</p>
   }
