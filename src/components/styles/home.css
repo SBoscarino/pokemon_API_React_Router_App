@@ -1,10 +1,10 @@
 .home-section {
   font-family: 'Raleway', sans-serif;
-  background-color: #dad8a8;
+  background-color: #6ab6da;
 }
 h1, h2, h3{
   margin: 0;
-  background-color: #f8f4ca;
+  background-color: #6594b0;
   width:100%;
   text-align: center;
 }
@@ -19,9 +19,14 @@ div {
   flex-basis: 33.3333%;
 }
 .ooocolors{
-  background-color: #f8f4ca;
+  padding-top:5px;
+  background-color:#6594b0;
   height:50px;
 }
-img {
-  height: 300px;
+.vaporeon {
+  padding-top:10px;
+  padding-bottom:10px;
+  width:50%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
