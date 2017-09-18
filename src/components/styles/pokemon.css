@@ -24,6 +24,9 @@
   list-style: none;
   flex-basis: 40%;
 }
+.pokemon-sprites {
+  height:300px;
+}
 
 h1, h2{
   margin: 0;
@@ -45,10 +48,23 @@ input:focus{
   box-shadow: 0 0 10px #f69d9f;
 }
 button {
+  margin-left: 3px;
   width: 80px;
   height:30px;
 }
 button:hover{
   background-color: #f69d9f;
   color: white;
+}
+
+ul {
+  list-style: none;
+  padding:0px;
+  margin:0px;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+li{
+  display: inline;
+  padding-left: 8px;
 }

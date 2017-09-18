@@ -37,7 +37,7 @@ handleSubmit(event) {
  }
 
   render(){
-    // console.log('yo', this.state.pokemonData)
+    console.log('yo', this.state.pokemonData)
     // console.log('yo', this.state.pokemonData.name)
     let PokemonPopUp;
     if (this.state.pokemonData.game_indices === undefined) {
@@ -49,15 +49,20 @@ handleSubmit(event) {
         <div className="popupinfoTwo">
             <div className="sprite">
             <h2>Sprites</h2>
-              <img alt="pokemon front" src={this.state.pokemonData.sprites.front_default}/>
-              <img alt="pokemon back" src={this.state.pokemonData.sprites.back_default}/>
+              <img className="pokemon-sprites" alt="pokemon-front" src={this.state.pokemonData.sprites.front_default}/>
+              <img className="pokemon-sprites" alt="pokemon-back" src={this.state.pokemonData.sprites.back_default}/>
             </div>
             <div className="pokemoninfo">
             <h2>Info on {this.state.pokemonData.name}</h2>
               <p>Pokedex Number: {this.state.pokemonData.order}</p>
               <p>Height: {this.state.pokemonData.height}</p>
               <p>Weight: {this.state.pokemonData.weight}</p>
-              <p>Base Experience:{this.state.pokemonData.base_experience}</p>
+              <p>Base Experience: {this.state.pokemonData.base_experience}</p>
+              <ul>Type(s):{this.state.pokemonData.types.map((type, i) => {
+                return(
+                  <li key={i}>{type.type.name}</li>
+                )
+              })}</ul>
             </div>
           </div>
         </div>
