@@ -40,7 +40,7 @@ handleSubmit(event) {
     // console.log('yo', this.state.pokemonData)
     // console.log('yo', this.state.pokemonData.name)
     let PokemonPopUp;
-    if (this.state.pokemonData.game_indices.length === undefined) {
+    if (this.state.pokemonData.game_indices === undefined) {
       PokemonPopUp = <p>You have left the field empty or spelled the Pokemon name incorrectly. Please check and try again.</p>
     }
     else if (this.state.pokemonData.game_indices.length > 0) {
